@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #ccc;
+  font-family: "Montserrat", sans-serif;
+}
+
+.page-title {
+  text-align: center;
+}
+
+.cards {
+  text-align: center;
+  width: 100%;
+}
+
+.card {
+  width: 300px;
+  text-align: center;
+  margin: 20px 20px;
+  padding: 0 10px;
+  display: inline-block;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 0.2px rgba(0, 0, 0, 0.5);
+}
+
+.card__property {
+  margin: 15px 25px;
+  font-size: 20px;
+}
+
+.card__title {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.card__field {
+  font-weight: 500;
+}

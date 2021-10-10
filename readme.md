@@ -2,7 +2,7 @@
 
 ### MVP
 
-Call on Cryptonator API and display cards with relevant information.
+Users can select as many cryptocurrencies from a predetermined list which will in turn be displayed as a card.
 
 ### Tech Stack
 

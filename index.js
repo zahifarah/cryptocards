@@ -11,21 +11,26 @@ app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use(express.static(path.join(__dirname, "public")))
 
-var cryptoObjects = {}
+var cryptoObjects = []
 
 /*
 Iterate over every pair from seed file and fetch the prices.
-Perhaps there's a way to do this with Promise.all which is faster?
+Perhaps there's a way to do this with Promise.all that might be faster?
 */
-function fetchPairPrices() {
+function fetchPrices() {
   for (let cryptoPair of cryptoPairs) {
-    fetch(`https://api.cryptonator.com/api/ticker/${cryptoPair}`).then(
-      (response) => response.json()
-    )
+    fetch(`https://api.cryptonator.com/api/ticker/${cryptoPair}`)
+      .then((response) => response.json())
+      .then((object) =>
+        Object.entries(object).map(([key, value]) =>
+          cryptoObjects.push(key, value)
+        )
+      )
   }
 }
 
-fetchPairPrices()
+fetchPrices()
+console.log(cryptoObjects)
 
 // home --> /cryptocards
 app.get("/cryptocards", (req, res) => {

@@ -20,82 +20,18 @@
   <div class="cards">
 
     <div class="card card__btc">
+
       <div class="card__property">
         <div class="card__title">
-          <%= btcUsdObj.ticker.base %>
-        </div>
-      </div>
-
-      <div class="card__property">
-        <div class="card__field">Price</div>
-        <div class="card__price">
-          <%=Math.round(btcUsdObj.ticker.price * 100) / 100 %>
-            <span class="card__currency">
-              <%= btcUsdObj.ticker.target %>
-            </span>
-        </div>
-      </div>
-
-      <div class="card__property">
-        <div class="card__field">Volume</div>
-        <div class="card__volume">
-          <%=Math.round(btcUsdObj.ticker.volume * 100) / 100 %>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card card__eth">
-      <div class="card__property">
-        <div class="card__title">
-          <%= ethUsdObj.ticker.base %>
-        </div>
-      </div>
-
-      <div class="card__property">
-        <div class="card__field">Price</div>
-        <div class="card__price">
-          <%=Math.round(ethUsdObj.ticker.price * 100) / 100 %>
-            <span class="card__currency">
-              <%= ethUsdObj.ticker.target %>
-            </span>
-        </div>
-      </div>
-
-      <div class="card__property">
-        <div class="card__field">Volume</div>
-        <div class="card__volume">
-          <%=Math.round(ethUsdObj.ticker.volume * 100) / 100 %>
-        </div>
-      </div>
-    </div>
-
-    <div class="card card__ada">
-      <div class="card__property">
-        <div class="card__title">
-          <%= adaUsdObj.ticker.base %>
-        </div>
-      </div>
-
-      <div class="card__property">
-        <div class="card__field">Price</div>
-        <div class="card__price">
-          <%=Math.round(adaUsdObj.ticker.price * 100) / 100 %>
-            <span class="card__currency">
-              <%= adaUsdObj.ticker.target %>
-            </span>
-        </div>
-      </div>
-
-      <div class="card__property">
-        <div class="card__field">Volume</div>
-        <div class="card__volume">
-          <%=Math.round(adaUsdObj.ticker.volume * 100) / 100 %>
+          <% for (let object in cryptoObjects) { %>
+            <%= object.ticker %>
+              <% } %>
         </div>
       </div>
     </div>
 
   </div>
+
 
 
   <script src="/index.js"></script>

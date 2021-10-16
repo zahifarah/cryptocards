@@ -4,6 +4,6 @@ const cryptoPairs = {
   ada: "usd",
 }
 
-module.exports.joinCryptoPairs = Object.entries(cryptoPairs).map((cryptoPair) =>
+module.exports.cryptoPairs = Object.entries(cryptoPairs).map((cryptoPair) =>
   cryptoPair.join("-")
 )

@@ -17,16 +17,10 @@
 <body>
   <h1 class="page-title">Home - Crypto Cards</h1>
 
-  <div class="cards">
-
-    <div class="card card__btc">
-
-      <div class="card__property">
-        <div class="card__title">
-          <% for (let object in cryptoObjects) { %>
-            <%= object %>
-              <% } %>
-        </div>
+  <div class="card card__btc">
+    <div class="card__property">
+      <div class="card__title">
+        <%= cryptoData %>
       </div>
     </div>
 

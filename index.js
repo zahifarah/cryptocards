@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const path = require("path")
-const { joinCryptoPairs: cryptoPairs } = require("./seed/seedHelper")
+const { cryptoPairs } = require("./seed/seedHelper")
 
 // requiring fetch (node-fetch) instead of using import
 const fetch = (...args) =>
@@ -11,32 +11,22 @@ app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use(express.static(path.join(__dirname, "public")))
 
-var cryptoObjects = []
-
-/*
-Iterate over every pair from seed file and fetch the prices.
-Perhaps there's a way to do this with Promise.all that might be faster?
-*/
+// Iterate over every pair of from seed file and fetch prices from Cryptonator API
 function fetchPrices() {
   for (let cryptoPair of cryptoPairs) {
     fetch(`https://api.cryptonator.com/api/ticker/${cryptoPair}`)
       .then((response) => response.json())
-      .then((object) =>
-        Object.entries(object).map(([key, value]) =>
-          cryptoObjects.push(key, value)
-        )
-      )
+      .then((object) => console.log(object)) // this works
   }
 }
 
-fetchPrices()
-console.log(cryptoObjects)
+const cryptoData = fetchPrices()
 
-// home --> /cryptocards
 app.get("/cryptocards", (req, res) => {
-  res.render("home.ejs", { cryptoObjects })
+  res.render("home.ejs", { cryptoData })
 })
 
+// server
 app.listen(3000, (req, res) => {
   console.log("Crypto Cards - 3000: LISTENING...")
 })

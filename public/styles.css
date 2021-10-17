@@ -4,12 +4,20 @@
 
 body {
   margin: 0;
-  background-color: #ccc;
+  background-color: rgb(196, 196, 196);
   font-family: "Montserrat", sans-serif;
+}
+
+.gradient-text {
+  background-image: linear-gradient(40deg, red, rgb(211, 0, 144));
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
 }
 
 .page-title {
   text-align: center;
+  font-size: 40px;
 }
 
 .cards {

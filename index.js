@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const path = require("path")
-const { cryptoPairs } = require("./seed/seed")
+const { cryptoPairs } = require("./seed/cryptoPairs")
 
 // requiring fetch (node-fetch) instead of using import
 const fetch = (...args) =>

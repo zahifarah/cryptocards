@@ -14,13 +14,15 @@ app.use(express.static(path.join(__dirname, "public")))
 const cryptoData = {}
 
 function fetchPrices() {
-  for (let cryptoPair of cryptoPairs) {
-    fetch(`https://api.cryptonator.com/api/ticker/${cryptoPair}`)
-      .then((res) => res.json())
-      .then((data) => (cryptoData[cryptoPair] = data.ticker))
-      .then(() => console.log(cryptoData))
-      .catch((error) => console.log(error))
-  }
+  Promise.all(
+    cryptoPairs.map((cryptoPair) => {
+      return fetch(`https://api.cryptonator.com/api/ticker/${cryptoPair}`)
+        .then((res) => res.json())
+        .then((data) => (cryptoData[cryptoPair] = data.ticker))
+        .then(() => console.log(cryptoData))
+        .catch((error) => console.log("ERROR!"))
+    })
+  )
 }
 
 fetchPrices()

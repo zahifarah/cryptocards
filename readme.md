@@ -2,7 +2,7 @@
 
 ### MVP
 
-Users can select as many cryptocurrencies from a predetermined list which will in turn be displayed as a card.
+A single page application where users can select their favorite cryptocurrency pairs and have relevant information displayed such as price, volume, change, etc.
 
 ### Tech Stack
 

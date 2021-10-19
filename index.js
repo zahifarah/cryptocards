@@ -19,10 +19,9 @@ function fetchPrices() {
       return fetch(`https://api.cryptonator.com/api/ticker/${cryptoPair}`)
         .then((res) => res.json())
         .then((data) => (cryptoData[cryptoPair] = data.ticker))
-        .then(() => console.log(cryptoData))
         .catch((error) => console.log("ERROR!"))
     })
-  )
+  ).then(() => console.log(cryptoData))
 }
 
 fetchPrices()

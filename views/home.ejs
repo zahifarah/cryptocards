@@ -18,9 +18,9 @@
   <h1 class="page-title gradient-text">Crypto Cards</h1>
 
   <div class="cards">
+
     <% for(let cryptoPair in cryptoData) { %>
       <div class="card">
-
         <div class="card__property">
           <div class="card__title">
             <%= cryptoData[cryptoPair].base %>
@@ -40,13 +40,17 @@
         <div class="card__property">
           <div class="card__field">Volume</div>
           <div class="card__volume">
-            <%=Math.round(cryptoData[cryptoPair].volume * 100) / 100 %>
+            <% if (cryptoData[cryptoPair].volume==="" ) { %>
+              <span class="card__unavailable"><em>Data not available</em></span>
+              <% } else { %>
+                <%=Math.round(cryptoData[cryptoPair].volume) %>
+                  <% } %>
           </div>
         </div>
       </div>
       <% } %>
-  </div>
 
+  </div>
 
   <script src="/index.js"></script>
 </body>

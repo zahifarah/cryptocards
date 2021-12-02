@@ -13,18 +13,33 @@ app.use(express.static(path.join(__dirname, "public")))
 
 const cryptoData = {}
 
-function fetchPrices() {
-  Promise.all(
-    cryptoPairs.map((cryptoPair) => {
-      return fetch(`https://api.cryptonator.com/api/ticker/${cryptoPair}`)
-        .then((res) => res.json())
-        .then((data) => (cryptoData[cryptoPair] = data.ticker))
-        .catch((error) => console.log("ERROR!"))
-    })
-  ).then(() => console.log(cryptoData))
+// PROMISE FLAVOR
+// function fetchPrices() {
+//   Promise.all(
+//     cryptoPairs.map((cryptoPair) => {
+//       return fetch(`https://api.cryptonator.com/api/ticker/${cryptoPair}`)
+//         .then((res) => res.json())
+//         .then((data) => (cryptoData[cryptoPair] = data.ticker))
+//         .catch((error) => console.log("ERROR!"))
+//     })
+//   ).then(() => console.log(cryptoData))
+// }
+
+// fetchPrices()
+
+// ASYNC/AWAIT FLAVOR
+async function asyncFetchPrices() {
+  for (let cryptoPair of cryptoPairs) {
+    const currentPair = await fetch(
+      `https://api.cryptonator.com/api/ticker/${cryptoPair}`
+    )
+    const currentPairJson = await currentPair.json()
+    cryptoData[cryptoPair] = currentPairJson.ticker
+  }
+  console.log(cryptoData)
 }
 
-fetchPrices()
+asyncFetchPrices()
 
 app.get("/cryptocards", (req, res) => {
   res.render("home.ejs", { cryptoData })
